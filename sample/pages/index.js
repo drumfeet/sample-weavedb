@@ -1,32 +1,33 @@
-import { useEffect } from "react";
-// import SDK from "weavedb-client";
-const SDK = require("weavedb-node-client")
+import { useEffect, useState } from "react";
+import SDK from "weavedb-client";
+// const SDK = require("weavedb-node-client")
 
 let sdk;
-const contractTxId = "SMVDZ9jRXO7Kb88D4rByayB3HbwzXYzzbaPJ9DnrB_s";
+const contractTxId = "f86Qw3vp6TlgxI3mABFnWDQNqR8mPVkVTBN04hwywqc";
 
 export default function Home() {
+  const [ok, setOK] = useState(false);
+  const [version, setVersion] = useState();
+
   useEffect(() => {
     (async () => {
       sdk = new SDK({
         contractTxId,
-
         /**/
-        rpc: "localhost:8080",
+        // rpc: "localhost:8080",
         // rpc: "lb.weavedb-node.xyz:443",
 
-
         /**/
-        // rpc: "http://localhost:8080",
+        rpc: "http://localhost:8080",
         // rpc: "http://lb.weavedb-node.xyz:80",
         // rpc: "https://lb.weavedb-node.xyz:443",
       });
-      console.log(sdk);
 
       await sdk
         .getInfo()
         .then((result) => {
-          console.log(result);
+          setVersion(result.version);
+          console.log(result.version);
         })
         .catch((err) => {
           console.log(err);
@@ -34,5 +35,9 @@ export default function Home() {
     })();
   }, []);
 
-  return <>Home</>;
+  return (
+    <>
+      <div>getInfo() version : {version}</div>
+    </>
+  );
 }
