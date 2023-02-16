@@ -126,3 +126,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 weavedb-sdk/pages/wallet-mainnet.json
+sample/pages/wallet-mainnet.json
