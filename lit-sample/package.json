@@ -1,0 +1,29 @@
+{
+  "name": "lit-sample",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^2.0.18",
+    "@chakra-ui/react": "^2.5.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "buffer": "^6.0.3",
+    "chart.js": "^4.2.1",
+    "ethers": "^6.2.3",
+    "framer-motion": "^10.11.2",
+    "localforage": "^1.10.0",
+    "next": "13.2.4",
+    "ramda": "^0.29.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-toastify": "^9.1.2",
+    "weavedb-sdk": "^0.26.10",
+    "@lit-protocol/sdk-browser": "^1.1.241"
+  }
+}
