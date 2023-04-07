@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import SDK from "weavedb-sdk"
-import { Button, ChakraProvider } from "@chakra-ui/react"
+import { Button, ChakraProvider, Input } from "@chakra-ui/react"
 import LitJsSdk from "@lit-protocol/sdk-browser"
 
 let db, lit
@@ -8,6 +8,8 @@ export default function Home() {
   const [user, setUser] = useState(null)
   const [msgDecrypted, setMsgDecrypted] = useState()
   const [message, setMessage] = useState("this is a sample message")
+
+  const handleChange = (e) => setMessage(e.target.value)
 
   const accessControlConditions = [
     {
@@ -160,6 +162,9 @@ export default function Home() {
         </div>
       ) : (
         <>
+          <Input placeholder="Input a message" onChange={handleChange} />
+          <br />
+          <br />
           <Button onClick={handleEncrypt}>Encrypt Msg</Button>
           <br />
           <br />
