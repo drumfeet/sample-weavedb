@@ -25,31 +25,6 @@ export default function Home() {
     },
   ]
 
-  const addNewMessage = async (encryptedData, encryptedSymmetricKey) => {
-    const COLLECTION_NAME = "people"
-    const docId = user.linkedAccount
-
-    db.set(
-      {
-        date: db.ts(),
-        user_address: db.signer(),
-        lit: {
-          encryptedData: encryptedData,
-          encryptedSymmetricKey: LitJsSdk.uint8arrayToString(
-            encryptedSymmetricKey,
-            "base16"
-          ),
-          accessControlConditions: accessControlConditions,
-        },
-      },
-      COLLECTION_NAME,
-      docId,
-      user
-    )
-
-    console.log("addNewMessage")
-  }
-
   const handleEncrypt = async () => {
     lit = new LitJsSdk.LitNodeClient()
     await lit.connect()
@@ -87,10 +62,27 @@ export default function Home() {
     const encryptedData = await blobToDataURI(encryptedString)
     console.log("encryptedData", encryptedData)
 
-    console.log("user", user)
-    addNewMessage(encryptedData, encryptedSymmetricKey)
+    const COLLECTION_NAME = "people"
+    const docId = user.linkedAccount
+    db.set(
+      {
+        date: db.ts(),
+        user_address: db.signer(),
+        lit: {
+          encryptedData: encryptedData,
+          encryptedSymmetricKey: LitJsSdk.uint8arrayToString(
+            encryptedSymmetricKey,
+            "base16"
+          ),
+          accessControlConditions: accessControlConditions,
+        },
+      },
+      COLLECTION_NAME,
+      docId,
+      user
+    )
 
-    console.log("handleBtnClick")
+    console.log("handleEncrypt")
   }
 
   const handleDecrypt = async () => {
